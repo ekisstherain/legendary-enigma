@@ -6,6 +6,8 @@ import {SharedModule, HeaderComponent, FooterComponent} from "./_shared";
 import {HomeModule} from "./home/home.module";
 import {} from "./_shared/layout/header/header.component";
 import {RouterModule} from "@angular/router";
+import {TestModule} from "./test/test.module";
+import {AuthModule} from "./auth/auth.module";
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([]);
 
@@ -19,7 +21,9 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([]);
         BrowserModule,
         SharedModule,
         HomeModule,
-        rootRouting
+        rootRouting,
+        TestModule,
+        AuthModule
     ],
     providers: [],
     bootstrap: [AppComponent]

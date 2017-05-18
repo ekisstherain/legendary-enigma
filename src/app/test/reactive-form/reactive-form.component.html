@@ -1,0 +1,19 @@
+<form [formGroup]="authForm" (submit)="submit()">
+
+    <div class="form-group">
+        <input formControlName="email"
+               placeholder="Email"
+               class="form-control form-control-lg"
+               type="text" autofocus/>
+    </div>
+
+    <div class="form-group">
+        <input formControlName="password"
+               placeholder="Password"
+               class="form-control form-control-lg"
+               type="password"/>
+    </div>
+    <button type="submit" class="btn btn-lg btn-primary pull-xs-right">
+        Submit
+    </button>
+</form>
