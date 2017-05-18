@@ -8,6 +8,7 @@
                     <a [routerLink]="['/register']" *ngIf="authType == 'login'">Need an account?</a>
                 </p>
 
+                <app-list-errors [errors]="errors"></app-list-errors>
                 <form [formGroup]="authForm" (ngSubmit)="submit()">
                     <fieldset [disabled]="isSubmitting">
                         <fieldset class="form-group">

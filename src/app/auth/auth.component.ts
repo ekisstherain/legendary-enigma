@@ -1,6 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ApiService} from "../_shared/_service/api.service";
+import {UserService} from "../_shared/_service/user.service";
 
 @Component({
     selector: 'app-auth',
@@ -13,8 +15,12 @@ export class AuthComponent implements OnInit {
     title = '';
     isSubmitting = false;
     authForm: FormGroup;
+    errors = new Error();
 
-    constructor(private fb: FormBuilder, private route: ActivatedRoute) {
+    constructor(private fb: FormBuilder,
+                private route: ActivatedRoute,
+                private router: Router,
+                private userServer: UserService) {
         this.authForm = fb.group({
             'email': ['', Validators.required],
             'password': ['', Validators.required]
@@ -36,8 +42,16 @@ export class AuthComponent implements OnInit {
     }
 
     submit() {
+        this.errors = new Error();
         this.isSubmitting = true;
         let credentials = this.authForm.value;
+        this.userServer.attemptAuth(this.authType, credentials)
+            .subscribe(data => {
+                this.router.navigateByUrl('/');
+            }, error => {
+                this.errors = error;
+                this.isSubmitting = false;
+            });
         console.log(credentials);
     }
 
