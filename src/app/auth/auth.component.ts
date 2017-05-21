@@ -29,24 +29,29 @@ export class AuthComponent implements OnInit {
 
     ngOnInit() {
         this.route.url.subscribe(data => {
-            console.info(data);
             this.authType = data[data.length - 1].path;
 
             if (this.authType === 'login') {
                 this.title = 'Sign in';
-            } else {
+            } else if (this.authType === 'register') {
                 this.title = 'Sign up';
                 this.authForm.addControl('username', new FormControl('', Validators.required));
+            } else if (this.authType === 'logout') {
+                // logout
+                this.userServer.cleanAuth();
+                this.router.navigateByUrl('/login');
             }
         });
     }
 
     submit() {
+        console.info('login ...');
         this.errors = new Error();
         this.isSubmitting = true;
         let credentials = this.authForm.value;
         this.userServer.attemptAuth(this.authType, credentials)
             .subscribe(data => {
+                console.info('login success');
                 this.router.navigateByUrl('/');
             }, error => {
                 this.errors = error;

@@ -1,0 +1,24 @@
+{
+  "login": {
+    "email": "admin",
+    "username": "admin",
+    "token": "jwt.token.here",
+    "password": "password",
+    "image": "",
+    "bio": "test13"
+  },
+  "users": [
+    {
+      "email": "dd",
+      "password": "ff",
+      "username": "cc",
+      "id": 1
+    }
+  ],
+  "profiles": {
+    "username": "admin",
+    "bio": "I work at statefarm",
+    "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+    "following": false
+  }
+}
